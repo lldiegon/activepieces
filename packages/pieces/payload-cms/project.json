@@ -1,0 +1,42 @@
+{
+  "name": "pieces-payload-cms",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/pieces/payload-cms/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/packages/pieces/payload-cms",
+        "tsConfig": "packages/pieces/payload-cms/tsconfig.lib.json",
+        "packageJson": "packages/pieces/payload-cms/package.json",
+        "main": "packages/pieces/payload-cms/src/index.ts",
+        "assets": [
+          "packages/pieces/payload-cms/*.md"
+        ],
+        "buildableProjectDepsInPackageJsonType": "dependencies"
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs pieces-payload-cms {args.ver} {args.tag}",
+      "dependsOn": [
+        "build"
+      ]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/pieces/payload-cms/**/*.ts"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
