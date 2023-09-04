@@ -3,11 +3,11 @@ import { httpClient, HttpMethod } from "@activepieces/pieces-common";
 import { amplenoteAuth } from "../..";
 
 export const addContentToNote = createAction({
-	name: 'add_content_to_note', 
-  auth: amplenoteAuth,
-  displayName:'Add Content to Note',
-  description: 'Add content to a note in Amplenote',
-	props: {
+    name: 'add_content_to_note', 
+    auth: amplenoteAuth,
+    displayName:'Add Content to Note',
+    description: 'Add content to a note in Amplenote',
+    props: {
         note_id: Property.ShortText({
             displayName: 'Note ID',
             required: true,
@@ -65,8 +65,9 @@ export const addContentToNote = createAction({
             displayName: 'Heading Level',
             required: false,
         }),
-	},
-	async run(context) {
+    },
+    
+    async run(context) {
         const AMPLENOTE_API_URL = "https://api.amplenote.com/v4/";
 
         const nodes = [];
