@@ -3,7 +3,7 @@ import { httpClient, HttpMethod } from "@activepieces/pieces-common";
 import { amplenoteAuth } from "../..";
 
 export const addContentToNote = createAction({
-	name: 'add_content_to_note', // Must be a unique across the piece, this shouldn't be changed.
+	name: 'add_content_to_note', 
   auth: amplenoteAuth,
   displayName:'Add Content to Note',
   description: 'Add content to a note in Amplenote',
@@ -57,6 +57,14 @@ export const addContentToNote = createAction({
             displayName: 'Content',
             required: false,
         }),
+        link_url: Property.ShortText({
+            displayName: 'Link URL',
+            required: false,
+        }),
+        heading_level: Property.Number({
+            displayName: 'Heading Level',
+            required: false,
+        }),
 	},
 	async run(context) {
         const AMPLENOTE_API_URL = "https://api.amplenote.com/v4/";
@@ -96,7 +104,7 @@ export const addContentToNote = createAction({
         } else if (context.propsValue.content_type === 'heading') {
             nodes.push({
                 type: "heading",
-                attrs: { level: context.propsValue.heading },
+                attrs: { level: context.propsValue.heading_level },
                 content: [{ type: "text", text }]
             });
         }
