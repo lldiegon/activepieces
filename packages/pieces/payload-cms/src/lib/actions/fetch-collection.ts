@@ -7,7 +7,7 @@ export const fetchPayloadCollection = createAction({
 	displayName: 'Fetch Payload Collection',
 	description: 'Fetch a collection from Payload CMS',
 	props: {
-		collection_name: Property.String({
+		collection_name: Property.ShortText({
 			displayName: 'Collection Name',
 			description: 'Name of the collection to fetch from Payload CMS',
 			required: true,
